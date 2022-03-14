@@ -14,7 +14,7 @@ class mobileRechargeControlerForRecharge
         $this->varModelObj = new CommonModel();
          
          
-        $this->log_path = 'madonnamarketing';   
+        $this->log_path = 'rechargingsolutuion';   
        
         
         $this->ref_id=$_POST['v_agent_id'];
@@ -102,7 +102,7 @@ class mobileRechargeControlerForRecharge
     
         $sCurrDate = date("Y-m"); //Current Date
 
-    	$sDirPath = "/home/".$this->log_path."/public_html/log/star/".$sCurrDate."/"; //Specified Pathname
+    	$sDirPath = "/home/".$this->log_path."/public_html/log/rs/".$sCurrDate."/"; //Specified Pathname
     
     	if (!file_exists ($sDirPath))
     
@@ -113,7 +113,7 @@ class mobileRechargeControlerForRecharge
     	}
         $ch = curl_init();
         //console.log('Getting Post Message in Curl Page  : '.$_POST['api_message']);
-        file_put_contents("/home/".$this->log_path."/public_html/log/star/".$sCurrDate."/test_api_curl_star_out_v3_" . date("d-m-Y") . ".txt", "\n" . $date . " : " . $_POST['api_url'].$_POST['api_message'], FILE_APPEND | LOCK_EX);
+        file_put_contents("/home/".$this->log_path."/public_html/log/rs/".$sCurrDate."/test_api_curl_star_out_v3_" . date("d-m-Y") . ".txt", "\n" . $date . " : " . $_POST['api_url'].$_POST['api_message'], FILE_APPEND | LOCK_EX);
         
         
         curl_setopt($ch, CURLOPT_URL,$_POST['api_url']);
@@ -129,7 +129,7 @@ class mobileRechargeControlerForRecharge
         
         if(curl_errno($ch)){
                   
-                    file_put_contents("/home/".$this->log_path."/public_html/log/star/".$sCurrDate."/test_api_curl_star_error_" . date("d-m-Y") . ".txt", "\n" . $this->current_date . " : " . ' Request Error:' . curl_error($ch), FILE_APPEND | LOCK_EX);
+                    file_put_contents("/home/".$this->log_path."/public_html/log/rs/".$sCurrDate."/test_api_curl_star_error_" . date("d-m-Y") . ".txt", "\n" . $this->current_date . " : " . ' Request Error:' . curl_error($ch), FILE_APPEND | LOCK_EX);
                     $this->response_code='TXF';
                     $this->response_msg='Transaction Failed';
                     $this->start_tran_number='STAR-CURL-TXF'.$this->ref_id;
@@ -145,7 +145,7 @@ class mobileRechargeControlerForRecharge
         
         //$varModelObj = new CommonModel();
         //$varModelObj->AddToTableForLog("insert into transaction_log(result,app_web,status,transaction_id)values('".trim($server_output)."','".$_POST['post_through']."','".$_POST['api']."','".$_POST['v_agent_id']."')");
-        file_put_contents("/home/".$this->log_path."/public_html/log/star/".$sCurrDate."/test_api_curl_star_in_v3_" . date("d-m-Y") . ".txt", "\n" . $date . " : " . trim($server_output), FILE_APPEND | LOCK_EX);
+        file_put_contents("/home/".$this->log_path."/public_html/log/rs/".$sCurrDate."/test_api_curl_star_in_v3_" . date("d-m-Y") . ".txt", "\n" . $date . " : " . trim($server_output), FILE_APPEND | LOCK_EX);
         
         //return trim($server_output);
        
